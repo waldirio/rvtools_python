@@ -1,0 +1,11 @@
+data_files
+*.conf
+*.pyc
+*/__pycache__/*
+.vscode
+*.csv
+.~lock*
+rvtools.conf
+build
+dist
+rvtools_python.egg-info
