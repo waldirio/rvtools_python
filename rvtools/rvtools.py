@@ -1,3 +1,4 @@
+#!/usr/bin/env python 
 
 def check_conf_file():
     try:
