@@ -51,6 +51,12 @@ user: username_here
 ...
 ```
 
+The result will be the csv file created on the `rvtools` directory.
+```
+vinfo.csv
+...
+```
+
 Hope you enjoy it. Still working to improve/add all features. Feel free to send your feedback.
 
 Best
