@@ -13,34 +13,35 @@ Thank you and feel free to request Features / Enhancements.
 
 First, clone this repo
 ```
-git clone git@github.com:waldirio/rvtools.git
+[waldirio@ironman ~]$ pwd
+/home/waldirio
+[waldirio@ironman ~]$ 
+[waldirio@ironman ~]$ git clone git@github.com:waldirio/rvtools.git
 ```
 Now, it's time to create your virtual environment "I really recommend you to do that"
 ```
-$ python3 -m venv /tmp/rvtools
+[waldirio@ironman ~]$ $ python3 -m venv /tmp/rvtools
 ```
 Let's load the virtual environment
 ```
-$ source /tmp/rvtools/bin/activate
-(rvtools) [login@hostname ]$
+[waldirio@ironman ~]$ $ source /tmp/rvtools/bin/activate
+(rvtools) [waldirio@ironman ]$
 ```
-Ok. Let's imagine I ran the git clone command on my home directory "/home/waldirio" then
+Ok. We know I ran the git clone command on my home directory "/home/waldirio" then
 ```
-$ cd /home/waldirio/rvtools
+(rvtools) [waldirio@ironman ]$ cd /home/waldirio/rvtools
 ```
 Now it's time to update pip and install requirements
 ```
-(rvtools) [login@hostname rvtools]$ pip install --upgrade pip
-(rvtools) [login@hostname rvtools]$ pip install -r requirements 
+(rvtools) [waldirio@ironman rvtools]$ pip install --upgrade pip
+(rvtools) [waldirio@ironman rvtools]$ pip install -r requirements 
 ```
-
-Now the last step. Let's configure the vCenter url, username and password on the file `rvtools/rvtools.conf`
+The last step. Let's configure the vCenter url, username and password on the file `rvtools/rvtools.conf`
 ```
 vcenter=vcenter.fqdn.here
 username=username_here
 password=password_here
 ```
-
 and ... run it.
 ```
 (rvtools) [login@hostname rvtools]$ rvtools/rvtools.py 
@@ -54,6 +55,5 @@ Hope you enjoy it. Still working to improve/add all features. Feel free to send 
 
 Best
 Waldirio
-waldirio@gmail.com
 
 [1]. https://www.robware.net/rvtools/
