@@ -1,5 +1,5 @@
 """ Main rvtools module """
-#!/usr/bin/env python 
+#!/usr/bin/env python
 
 import ssl
 import requests
@@ -8,7 +8,7 @@ from pyVim import connect
 from corerv import *
 from vinfo.vinfo import *
 
-#from pyVmomi import vmodl
+# from pyVmomi import vmodl
 
 
 requests.packages.urllib3.disable_warnings()
@@ -31,7 +31,6 @@ def main():
 
     # VM Information
     vinfo_collect(service_instance)
-
 
 
 # https://code.vmware.com/apis/358/vsphere

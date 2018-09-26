@@ -1,6 +1,7 @@
 """ Module to read the conf file / vcenter, username and password """
 import re
 
+
 class CoreCode(object):
     """  Main Class *CoreCode* responsible for read the conf file feature """
 

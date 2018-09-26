@@ -1,6 +1,7 @@
 """ Module responsible to save the content as csv file """
 import csv
 
+
 def csv_print(module_name, server_list):
     """
     Def which will receive the server list and then will
