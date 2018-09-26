@@ -1,5 +1,5 @@
-""" Main rvtools module """
 #!/usr/bin/env python
+""" Main rvtools module """
 
 import ssl
 import requests
@@ -22,8 +22,8 @@ def main():
 
     ssl_context = ssl._create_unverified_context()
 
-    print("vcenter: {}\nuser: {}\npassword: {}\n ".format( \
-         conn._vcenter, conn._username, conn._password))
+    print("vcenter: {}\nuser: {}\n".format( \
+         conn._vcenter, conn._username))
 
     service_instance = connect.SmartConnect(host=conn._vcenter, user=conn._username, \
          pwd=conn._password, port=443, sslContext=ssl_context)
