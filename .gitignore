@@ -4,3 +4,4 @@ rvtools/rvtools.conf
 *.pyc
 */__pycache__/*
 .vscode
+*.csv
