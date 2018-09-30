@@ -1,5 +1,4 @@
 data_files
-rvtools/rvtools.conf
 *.conf
 *.pyc
 */__pycache__/*
