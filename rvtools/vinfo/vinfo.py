@@ -19,8 +19,8 @@ def vinfo_collect(service_instance):
     children = container_view.view
     for child in children:
         # if 'sat62' in child.name:
-        if 'akavir-sat63' in child.name:
-            # obj_inspect(child)
+        # if 'akavir-sat63' in child.name:
+        if True:
 
             vinfo_data = {}
 
