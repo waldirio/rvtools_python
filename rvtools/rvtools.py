@@ -5,6 +5,9 @@ import ssl
 import requests
 from pyVim import connect
 
+# from corerv import *
+# from vinfo.vinfo import *
+
 from corerv import *
 from vinfo.vinfo import *
 
