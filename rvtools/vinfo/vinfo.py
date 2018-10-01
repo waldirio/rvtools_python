@@ -1,4 +1,3 @@
-# from pprint import pprint
 import time
 
 from pyVmomi import vim
@@ -20,8 +19,8 @@ def vinfo_collect(service_instance):
     for child in children:
         # if 'sat62' in child.name:
         # if 'akavir-sat63' in child.name:
-        # if 'newcontenthost1' in child.name:
-        if True:
+        if 'waldirio-desk' in child.name:
+        # if True:
 
             vinfo_data = {}
 
@@ -336,9 +335,11 @@ def vinfo_collect(service_instance):
             # print("Cluster: {}".format(cluster))
             # vinfo_data['xx'] = str(xx)
 
-            # host = "xx"
-            # print("Host: {}".format(host))
-            # vinfo_data['xx'] = str(xx)
+            host = child.runtime.host.name
+            if host is None:
+                host = ""
+            print("Host: {}".format(host))
+            vinfo_data['host'] = str(host)
 
             # os_according_to_the_configuration_file = "xx"
             # print("OS According to the configuration file: {}".format(os_according_to_the_configuration_file))
@@ -351,9 +352,12 @@ def vinfo_collect(service_instance):
             print("OS According to the vmware tools: {}".format(os_according_to_the_vmware_tools))
             vinfo_data['os_according_to_the_vmware_tools'] = str(os_according_to_the_vmware_tools)
 
-            # vm_id = "xx"
-            # print("VM ID: {}".format(vm_id))
-            # vinfo_data['xx'] = str(xx)
+            # OK
+            vm_id = child._moId
+            if vm_id is None:
+                vm_id = ""
+            print("VM ID: {}".format(vm_id))
+            vinfo_data['vm_id'] = str(vm_id)
 
             # OK
             vm_uuid = child.config.uuid
