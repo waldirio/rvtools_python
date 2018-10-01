@@ -20,52 +20,71 @@ def vinfo_collect(service_instance):
     for child in children:
         # if 'sat62' in child.name:
         # if 'akavir-sat63' in child.name:
+        # if 'newcontenthost1' in child.name:
         if True:
 
             vinfo_data = {}
 
             # OK
             vm = child.name
+            if vm is None:
+                vm = ""
             print("Machine Name: {}".format(vm))
             vinfo_data['vm'] = vm
 
             # OK
             powerstate = child.runtime.powerState
+            if powerstate is None:
+                powerstate = ""
             print("Powerstate: {}".format(powerstate))
             vinfo_data['powerstate'] = str(powerstate)
 
             # OK
             template = child.config.template
+            if template is None:
+                template = ""
             print("Template: {}".format(template))
             vinfo_data['template'] = str(template)
 
             # OK
             config_status = child.configStatus
+            if config_status is None:
+                config_status = ""
             print("Config status: {}".format(config_status))
             vinfo_data['config_status'] = str(config_status)
 
             # OK
             dns_name = child.guest.hostName
+            if dns_name is None:
+                dns_name = ""
             print("DNS Name: {}".format(dns_name))
             vinfo_data['dns_name'] = str(dns_name)
 
             # OK
             connection_state = child.runtime.connectionState
+            if connection_state is None:
+                connection_state = ""
             print("Connection state: {}".format(connection_state))
             vinfo_data['connection_state'] = str(connection_state)
 
             # OK
             guest_state = child.guest.guestState
+            if guest_state is None:
+                guest_state = ""
             print("Guest state: {}".format(guest_state))
             vinfo_data['guest_state'] = str(guest_state)
 
             # OK
             heartbeat = child.guestHeartbeatStatus
+            if heartbeat is None:
+                heartbeat = ""
             print("Heartbeat: {}".format(heartbeat))
             vinfo_data['heartbeat'] = str(heartbeat)
 
             # OK
             consolidation_needed = child.runtime.consolidationNeeded
+            if consolidation_needed is None:
+                consolidation_needed = ""
             print("Consolidation needed: {}".format(consolidation_needed))
             vinfo_data['consolidation_needed'] = str(consolidation_needed)
 
@@ -75,26 +94,38 @@ def vinfo_collect(service_instance):
 
             # OK
             suspend_time = child.runtime.suspendTime
+            if suspend_time is None:
+                suspend_time = ""
             print("Suspend time: {}".format(suspend_time))
             vinfo_data['suspend_time'] = str(suspend_time)
 
             # OK
             change_version = child.config.changeVersion
+            if change_version is None:
+                change_version = ""
             print("Change version: {}".format(change_version))
             vinfo_data['change_version'] = str(change_version)
 
             # OK
             cpus = child.config.hardware.numCPU
+            if cpus is None:
+                cpus = ""
             print("CPUs: {}".format(cpus))
             vinfo_data['cpus'] = str(cpus)
 
             # OK
-            latency_sensitivity = child.config.latencySensitivity.level
+            try:
+                latency_sensitivity = child.config.latencySensitivity.level
+            except(AttributeError):
+                latency_sensitivity = ""
+
             print("Latency sensitivy: {}".format(latency_sensitivity))
             vinfo_data['latency_sensitivity'] = str(latency_sensitivity)
 
             # OK
             memory = child.config.hardware.memoryMB
+            if memory is None:
+                memory = ""
             print("Memory: {}".format(memory))
             vinfo_data['memory'] = str(memory)
 
@@ -105,6 +136,8 @@ def vinfo_collect(service_instance):
 
             # OK
             disks = child.layout.disk.__len__()
+            if disks is None:
+                disks = ""
             print("Disks: {}".format(disks))
             vinfo_data['disks'] = str(disks)
 
@@ -157,11 +190,9 @@ def vinfo_collect(service_instance):
             vinfo_data['network_04'] = str(network_04)
 
 
-            num_monitors = "xx"
-            print("Num monitors: {}".format(num_monitors))
+            # num_monitors = "xx"
+            # print("Num monitors: {}".format(num_monitors))
             # vinfo_data['xx'] = str(xx)
-
-            print("here")
 
             # video_ram_kb = "xx"
             # print("Video ram KB: {}".format(video_ram_kb))
@@ -185,6 +216,8 @@ def vinfo_collect(service_instance):
 
             # OK
             ft_state = child.runtime.faultToleranceState
+            if ft_state is None:
+                ft_state = ""
             print("FT state: {}".format(ft_state))
             vinfo_data['ft_state'] = str(ft_state)
 
@@ -238,16 +271,22 @@ def vinfo_collect(service_instance):
 
             # OK
             boot_delay = child.config.bootOptions.bootDelay
+            if boot_delay is None:
+                boot_delay = ""
             print("Boot delay: {}".format(boot_delay))
             vinfo_data['boot_delay'] = str(boot_delay)
 
             # OK
             boot_retry_delay = child.config.bootOptions.bootRetryDelay
+            if boot_retry_delay is None:
+                boot_retry_delay = ""
             print("Boot retry delay: {}".format(boot_retry_delay))
             vinfo_data['boot_retry_delay'] = str(boot_retry_delay)
 
             # OK
             boot_retry_enabled = child.config.bootOptions.bootRetryEnabled
+            if boot_retry_enabled is None:
+                boot_retry_enabled = ""
             print("Boot retry enabled: {}".format(boot_retry_enabled))
             vinfo_data['boot_retry_enabled'] = str(boot_retry_enabled)
 
@@ -257,6 +296,8 @@ def vinfo_collect(service_instance):
 
             # OK
             firmware = child.config.firmware
+            if firmware is None:
+                firmware = ""
             print("Firmware: {}".format(firmware))
             vinfo_data['firmware'] = str(firmware)
 
@@ -278,6 +319,8 @@ def vinfo_collect(service_instance):
 
             # OK
             path = child.config.files.vmPathName
+            if path is None:
+                path = ""
             print("Path: {}".format(path))
             vinfo_data['path'] = str(path)
 
@@ -303,6 +346,8 @@ def vinfo_collect(service_instance):
 
             # OK
             os_according_to_the_vmware_tools = child.config.guestFullName
+            if os_according_to_the_vmware_tools is None:
+                os_according_to_the_vmware_tools = ""
             print("OS According to the vmware tools: {}".format(os_according_to_the_vmware_tools))
             vinfo_data['os_according_to_the_vmware_tools'] = str(os_according_to_the_vmware_tools)
 
@@ -312,6 +357,8 @@ def vinfo_collect(service_instance):
 
             # OK
             vm_uuid = child.config.uuid
+            if vm_uuid is None:
+                vm_uuid = ""
             print("VM UUID: {}".format(vm_uuid))
             vinfo_data['vm_uuid'] = str(vm_uuid)
 
