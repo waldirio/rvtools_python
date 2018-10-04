@@ -5,3 +5,4 @@ data_files
 .vscode
 *.csv
 .~lock*
+rvtools.conf

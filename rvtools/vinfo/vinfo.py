@@ -2,7 +2,6 @@ import time
 
 from pyVmomi import vim
 from print.csv_print import *
-from obj_inspect import *
 
 # def get_obj(content, vimtype, name):
 def get_obj(content, vimtype):
