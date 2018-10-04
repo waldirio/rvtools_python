@@ -4,3 +4,4 @@ data_files
 */__pycache__/*
 .vscode
 *.csv
+.~lock*
