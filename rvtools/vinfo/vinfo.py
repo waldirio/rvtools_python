@@ -4,7 +4,23 @@ from pyVmomi import vim
 from print.csv_print import *
 from obj_inspect import *
 
-def vinfo_collect(service_instance):
+# def get_obj(content, vimtype, name):
+def get_obj(content, vimtype):
+    obj = None
+    container = content.viewManager.CreateContainerView(content.rootFolder, vimtype, True)
+    obj = container.view[0].name
+    # for c in container.view:
+    #     if name:
+    #         if c.name == name:
+    #             obj = c
+    #             break
+    #     else:
+    #         obj = c
+    #         break
+    return obj
+
+
+def vinfo_collect(service_instance, directory):
     """ Def responsible to connect on the vCenter and retrieve VM information """
 
     content = service_instance.RetrieveContent()
@@ -12,6 +28,9 @@ def vinfo_collect(service_instance):
 
     view_type = [vim.VirtualMachine]
     container_view = content.viewManager.CreateContainerView(container, view_type, True)
+
+    # name="Resources"
+    # get_obj(content, [vim.Datacenter], name)
 
     server_list = []
 
@@ -21,6 +40,9 @@ def vinfo_collect(service_instance):
         # if 'akavir-sat63' in child.name:
         if 'waldirio-desk' in child.name:
         # if True:
+
+            # get_obj(content, [vim.Datacenter], name)
+            
 
             vinfo_data = {}
 
@@ -128,10 +150,10 @@ def vinfo_collect(service_instance):
             print("Memory: {}".format(memory))
             vinfo_data['memory'] = str(memory)
 
-            # #nics = child.guest.ipStack.len()
-            # nics = "xx"
-            # print("Nics: {}".format(nics))
-            # vinfo_data['xx'] = str(xx)
+            # OK
+            nics = child.network.__len__()
+            print("Nics: {}".format(nics))
+            vinfo_data['nics'] = str(nics)
 
             # OK
             disks = child.layout.disk.__len__()
@@ -188,14 +210,15 @@ def vinfo_collect(service_instance):
             print("Network #4: {}".format(network_04))
             vinfo_data['network_04'] = str(network_04)
 
+            # OK
+            num_monitors = child.config.hardware.device[7].numDisplays
+            print("Num monitors: {}".format(num_monitors))
+            vinfo_data['num_monitors'] = str(num_monitors)
 
-            # num_monitors = "xx"
-            # print("Num monitors: {}".format(num_monitors))
-            # vinfo_data['xx'] = str(xx)
-
-            # video_ram_kb = "xx"
-            # print("Video ram KB: {}".format(video_ram_kb))
-            # vinfo_data['xx'] = str(xx)
+            # OK
+            video_ram_kb = child.config.hardware.device[7].videoRamSizeInKB
+            print("Video ram KB: {}".format(video_ram_kb))
+            vinfo_data['video_ram_kb'] = str(video_ram_kb)
 
             # resource_pool = "xx"
             # print("Resource pool: {}".format(resource_pool))
@@ -327,13 +350,16 @@ def vinfo_collect(service_instance):
             # print("Annotation: {}".format(annotation))
             # vinfo_data['xx'] = str(xx)
 
-            # datacenter = "xx"
-            # print("Datacenter: {}".format(datacenter))
-            # vinfo_data['xx'] = str(xx)
+            # OK
+            datacenter = get_obj(content, [vim.Datacenter])
+            # datacenter = get_obj(child, [vim.Datacenter])
+            print("Datacenter: {}".format(datacenter))
+            vinfo_data['datacenter'] = str(datacenter)
 
-            # cluster = "xx"
-            # print("Cluster: {}".format(cluster))
-            # vinfo_data['xx'] = str(xx)
+            # OK
+            cluster = get_obj(content, [vim.ClusterComputeResource])
+            print("Cluster: {}".format(cluster))
+            vinfo_data['cluster'] = str(cluster)
 
             host = child.runtime.host.name
             if host is None:
@@ -387,4 +413,4 @@ def vinfo_collect(service_instance):
 
             server_list.append(vinfo_data)
 
-    csv_print("vinfo.csv", server_list)
+    csv_print("vinfo.csv", server_list, directory)

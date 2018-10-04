@@ -2,7 +2,7 @@
 import csv
 
 
-def csv_print(module_name, server_list):
+def csv_print(module_name, server_list, directory):
     """
     Def which will receive the server list and then will
     populate all fields from header as the content.
@@ -14,7 +14,9 @@ def csv_print(module_name, server_list):
 
     print("Inside Print definition")
 
-    with open(module_name, 'w', newline='') as f:
+    full_file_path = directory+"/"+module_name
+
+    with open(full_file_path, 'w', newline='') as f:
         fieldnames = server_list[0].keys()
         thewriter = csv.DictWriter(f, fieldnames=fieldnames)
         thewriter.writeheader()

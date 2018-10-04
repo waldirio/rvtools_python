@@ -19,6 +19,10 @@ class CoreCode(object):
                 if re.search('^password', line):
                     # PASSWORD = re.split('=', re.search('^password',line).string)[1]
                     self._password = re.split('=', re.search('^password', line).string)[1].strip()
+                if re.search('^directory', line):
+                    # DIRECTORY = re.split('=', re.search('^directory',line).string)[1]
+                    self._directory = re.split('=', re.search('^directory', line).string)[1].strip()
+
             return self
         except FileNotFoundError:
             print("There isn't the conf file, please create a new one")
@@ -27,4 +31,5 @@ class CoreCode(object):
             print("vcenter=<fqdn>")
             print("username=<vcenter username>")
             print("password=<password>")
+            print("directory=<directory>")
             print("-----------------------")
