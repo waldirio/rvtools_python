@@ -12,9 +12,9 @@ def csv_print(module_name, server_list, directory):
     automatically.
     """
 
-    print("Inside Print definition")
-
     full_file_path = directory+"/"+module_name
+
+    print("## Creating {} file.".format(full_file_path))
 
     with open(full_file_path, 'w', newline='') as f:
         fieldnames = server_list[0].keys()

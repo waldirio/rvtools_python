@@ -1,4 +1,4 @@
-# rvtools
+# rvtools python
 Application to be executed on Linux and collect all information from vCenter
 
 The idea is to be a similar application as RVTools [1] the main difference is, the application from website was designed to be executed only on MS platform, this version will be written in python 3.x so will be possible execute on Linux environment.
@@ -9,55 +9,55 @@ The point here is not about COPY but just improve the Python skill and use the p
 
 Thank you and feel free to request Features / Enhancements.
 
+Ps.: Necessary python 3.6 or greather. *Improving the code to be supported by 2.7 as well*
+
 # How to use??
 
-First, clone this repo
+First, install the python module
 ```
-[waldirio@ironman ~]$ pwd
-/home/waldirio
-[waldirio@ironman ~]$ 
-[waldirio@ironman ~]$ git clone git@github.com:waldirio/rvtools.git
+$ pip install rvtools-python
 ```
-Now, it's time to create your virtual environment "I really recommend you to do that"
+Now it's time to execute it.
 ```
-[waldirio@ironman ~]$ $ python3 -m venv /tmp/rvtools
+$ rvtools
 ```
-Let's load the virtual environment
+On the first run, will be created the file ~/.rvtools.conf
 ```
-[waldirio@ironman ~]$ $ source /tmp/rvtools/bin/activate
-(rvtools) [waldirio@ironman ]$
+vcenter=<fqdn>
+username=<vcenter username>
+password=<password>
+directory=<directory>
 ```
-Ok. We know I ran the git clone command on my home directory "/home/waldirio" then
+You can just update the information on the file to be seamless and generate all reports without ask you the password again or you are able to pass the information all the time as parameter
 ```
-(rvtools) [waldirio@ironman ]$ cd /home/waldirio/rvtools
-```
-Now it's time to update pip and install requirements
-```
-(rvtools) [waldirio@ironman rvtools]$ pip install --upgrade pip
-(rvtools) [waldirio@ironman rvtools]$ pip install -r requirements 
-```
-The last step. Let's configure the vCenter url, username and password on the file `rvtools/rvtools.conf`
-```
-vcenter=vcenter.fqdn.here
-username=username_here
-password=password_here
-```
-and ... run it.
-```
-(rvtools) [login@hostname rvtools]$ rvtools/rvtools.py 
-Reading the conf file
-vcenter: vcenter.fqdn.here
-user: username_here
-...
+$ rvtools --help
+usage: rvtools [-h] [-s HOST] [-u USERNAME] [-p PASSWORD] [-d DIRECTORY]
+               [-v VERBOSE]
+
+RVTools Python parameters
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s HOST, --host HOST  vCenter server to connect to
+  -u USERNAME, --username USERNAME
+                        vCenter username
+  -p PASSWORD, --password PASSWORD
+                        vCenter username password
+  -d DIRECTORY, --directory DIRECTORY
+                        Directory where will be saved all csv files. Should be
+                        empty
+  -v VERBOSE, --verbose VERBOSE
+                        Show additional info.
+$
 ```
 
-The result will be the csv file created on the `rvtools` directory.
+The result will be the csv file created on the directory defined on the conf file by `directory=<directory>` or via CLI by `-d DIRECTORY`.
 ```
 vinfo.csv
 ...
 ```
 
-Hope you enjoy it. Still working to improve/add all features. Feel free to send your feedback.
+Hope you enjoy it. Still working to improve/add all features. Feel free to send your feedback or just submit the new Issue [here](https://github.com/waldirio/rvtools_python/issues).
 
 Best
 Waldirio

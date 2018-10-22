@@ -1,9 +1,7 @@
-import time
-
 from pyVmomi import vim
-from print.csv_print import *
+from rvtools.printrv.csv_print import *
 
-# def get_obj(content, vimtype, name):
+
 def get_obj(content, vimtype):
     obj = None
     container = content.viewManager.CreateContainerView(content.rootFolder, vimtype, True)
@@ -22,14 +20,13 @@ def get_obj(content, vimtype):
 def vinfo_collect(service_instance, directory):
     """ Def responsible to connect on the vCenter and retrieve VM information """
 
+    print("## Processing vInfo module")
+
     content = service_instance.RetrieveContent()
     container = content.rootFolder
 
     view_type = [vim.VirtualMachine]
     container_view = content.viewManager.CreateContainerView(container, view_type, True)
-
-    # name="Resources"
-    # get_obj(content, [vim.Datacenter], name)
 
     server_list = []
 
@@ -37,11 +34,10 @@ def vinfo_collect(service_instance, directory):
     for child in children:
         # if 'sat62' in child.name:
         # if 'akavir-sat63' in child.name:
-        if 'waldirio-desk' in child.name:
-        # if True:
+        # if 'waldirio' in child.name:
+        if True:
 
             # get_obj(content, [vim.Datacenter], name)
-            
 
             vinfo_data = {}
 
@@ -136,7 +132,7 @@ def vinfo_collect(service_instance, directory):
             # OK
             try:
                 latency_sensitivity = child.config.latencySensitivity.level
-            except(AttributeError):
+            except AttributeError:
                 latency_sensitivity = ""
 
             print("Latency sensitivy: {}".format(latency_sensitivity))
@@ -173,7 +169,7 @@ def vinfo_collect(service_instance, directory):
             try:
                 if child.network[0].name:
                     network_01 = child.network[0].name
-            except(IndexError):
+            except IndexError:
                 network_01 = ""
 
             print("Network #1: {}".format(network_01))
@@ -183,7 +179,7 @@ def vinfo_collect(service_instance, directory):
             try:
                 if child.network[1].name:
                     network_02 = child.network[1].name
-            except(IndexError):
+            except IndexError:
                 network_02 = ""
 
             print("Network #2: {}".format(network_02))
@@ -193,7 +189,7 @@ def vinfo_collect(service_instance, directory):
             try:
                 if child.network[2].name:
                     network_03 = child.network[2].name
-            except(IndexError):
+            except IndexError:
                 network_03 = ""
 
             print("Network #3: {}".format(network_03))
@@ -203,21 +199,27 @@ def vinfo_collect(service_instance, directory):
             try:
                 if child.network[3].name:
                     network_04 = child.network[3].name
-            except(IndexError):
+            except IndexError:
                 network_04 = ""
 
             print("Network #4: {}".format(network_04))
             vinfo_data['network_04'] = str(network_04)
 
             # OK
-            num_monitors = child.config.hardware.device[7].numDisplays
-            print("Num monitors: {}".format(num_monitors))
-            vinfo_data['num_monitors'] = str(num_monitors)
+            for device in child.config.hardware.device:
+                if device._wsdlName == 'VirtualMachineVideoCard':
+                    num_monitors = device.numDisplays
+                    print("Num monitors: {}".format(num_monitors))
+                    vinfo_data['num_monitors'] = str(num_monitors)
+                    break
 
             # OK
-            video_ram_kb = child.config.hardware.device[7].videoRamSizeInKB
-            print("Video ram KB: {}".format(video_ram_kb))
-            vinfo_data['video_ram_kb'] = str(video_ram_kb)
+            for device in child.config.hardware.device:
+                if device._wsdlName == 'VirtualMachineVideoCard':
+                    video_ram_kb = device.videoRamSizeInKB
+                    print("Video ram KB: {}".format(video_ram_kb))
+                    vinfo_data['video_ram_kb'] = str(video_ram_kb)
+                    break
 
             # resource_pool = "xx"
             # print("Resource pool: {}".format(resource_pool))
@@ -408,7 +410,6 @@ def vinfo_collect(service_instance, directory):
             # vinfo_data['xx'] = str(xx)
 
             # print("=====================")
-
 
             server_list.append(vinfo_data)
 
