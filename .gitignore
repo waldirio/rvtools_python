@@ -6,3 +6,6 @@ data_files
 *.csv
 .~lock*
 rvtools.conf
+build
+dist
+rvtools_python.egg-info
