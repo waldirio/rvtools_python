@@ -43,6 +43,7 @@ def get_args():
                         action='store',
                         help='Show additional info.')
 
+
     args = parser.parse_args()
 
     return args
@@ -74,6 +75,7 @@ def main():
         username = args.username
         password = args.password
         directory = args.directory
+
 
     if not os.path.isdir(directory):
         print("You have to create the dir {}".format(directory))
