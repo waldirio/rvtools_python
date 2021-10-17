@@ -363,15 +363,16 @@ def vinfo_collect(service_instance, directory):
             print("Cluster: {}".format(cluster))
             vinfo_data['cluster'] = str(cluster)
 
-            try:
-                host = child.runtime.host.name
-            except pyVmomi.VmomiSupport.NoPermission:
-                host = None
+            # try:
+            #     host = child.runtime.host.name
+            # except pyVmomi.VmomiSupport.NoPermission:
+            # # except vim.fault.noPermission:
+            #     host = None
 
-            if host is None:
-                host = ""
-            # print("Host: {}".format(host))
-            vinfo_data['host'] = str(host)
+            # if host is None:
+            #     host = ""
+            # # print("Host: {}".format(host))
+            # vinfo_data['host'] = str(host)
 
             # os_according_to_the_configuration_file = "xx"
             # print("OS According to the configuration file: {}".format(os_according_to_the_configuration_file))
