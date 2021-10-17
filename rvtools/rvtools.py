@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """ Main rvtools module """
 
+import sys
 import os
 import ssl
 import argparse
@@ -59,7 +60,7 @@ def main():
         obj = CoreCode()
         conn = obj.read_conf_file()
         if conn is None:
-            exit()
+            sys.exit()
         else:
             server = conn._vcenter
             username = conn._username
@@ -68,7 +69,7 @@ def main():
             if server == '<fqdn>':
                 print("You are using default values. Please update the file")
                 print("~/.rvtools.conf or just pass all mandatory parameters.")
-                exit()
+                sys.exit()
     else:
         print("Using flags")
         server = args.host
@@ -79,7 +80,7 @@ def main():
 
     if not os.path.isdir(directory):
         print("You have to create the dir {}".format(directory))
-        exit()
+        sys.exit()
 
     ssl_context = ssl._create_unverified_context()
 
