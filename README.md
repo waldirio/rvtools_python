@@ -1,15 +1,15 @@
 # rvtools python
 Application to be executed on Linux and collect all information from vCenter
 
-The idea is to be a similar application as RVTools [1] the main difference is, the application from website was designed to be executed only on MS platform, this version will be written in python 3.x so will be possible execute on Linux environment.
+The idea is to be a similar application as RVTools [1] the main difference is, the application from website was designed to be executed only on MS platform, this version will be written in python 3 so will be possible execute on Linux environment.
 
-About the final result, the idea is generate one similar output *CSV files*.
+About the final result, the idea is generate similar output *CSV files*.
 
-The point here is not about COPY but just improve the Python skill and use the project [1] as reference once this one is a fantastic product !!!
+The point here is not about COPY but just improve the Python skill and use the project [1] as reference once this one is a fantastic product!!!
 
 Thank you and feel free to request Features / Enhancements.
 
-Ps.: Necessary python 3.6 or greather. *Improving the code to be supported by 2.7 as well*
+Ps.: Necessary python 3.9 or greather.
 
 # How to use??
 
@@ -17,10 +17,13 @@ First, install the python module
 ```
 $ pip install rvtools-python
 ```
+
 Now it's time to execute it.
 ```
+
 $ rvtools
 ```
+
 On the first run, will be created the file ~/.rvtools.conf
 ```
 vcenter=<fqdn>
@@ -28,6 +31,9 @@ username=<vcenter username>
 password=<password>
 directory=<directory>
 ```
+Note. the directory above is the area where all the `CSV` files will be saved by default.
+
+
 You can just update the information on the file to be seamless and generate all reports without ask you the password again or you are able to pass the information all the time as parameter
 ```
 $ rvtools --help
@@ -63,4 +69,3 @@ Best
 Waldirio
 
 [1]. https://www.robware.net/rvtools/
-
