@@ -1,21 +1,27 @@
-import setuptools
+from setuptools import find_packages, setup
 
 
-def long_description():
-    with open("README.md", "r") as fh:
-        return fh.read()
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+with open("requirements.txt", "r") as req:
+    requirements = req.readlines()
 
 
-setuptools.setup(
+setup(
     name="rvtools_python",
-    version="0.0.1",
+    version="1.0.0",
     author="Waldirio",
     author_email="waldirio@gmail.com",
     description="Simple app to collect information from vSphere",
-    long_description=long_description(),
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    install_requires=requirements,
     url="https://github.com/waldirio/rvtools_python/",
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
+    python_requires=">=3.9",
     scripts=['bin/rvtools'],
+    include_package_data=True,
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
