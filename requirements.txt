@@ -43,7 +43,7 @@ pylint==3.0.3
 pytoolconfig==1.3.1
 pyvim==3.0.3
 pyvmomi==8.0.2.0.1
-requests==2.31.0
+requests==2.32.0
 rope==1.12.0
 simplegeneric==0.8.1
 six==1.16.0
