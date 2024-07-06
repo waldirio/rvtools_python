@@ -3,7 +3,7 @@ appnope==0.1.4
 astroid==3.0.3
 asttokens==2.4.1
 backcall==0.2.0
-certifi==2024.2.2
+certifi==2024.7.4
 chardet==5.2.0
 charset-normalizer==3.3.2
 decorator==5.1.1
